@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import src.test.java.TestMaximum.List;
+import src.test.java.TestMaximum.String;
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -14,19 +17,18 @@ import static org.junit.Assert.assertEquals;
 
 public class MaximumTest {
 	
-	private Maximum testMax;
-    private Integer num1, num2, num3, output;
+	private List<String> inputList;
+    private String output;
 
-    //public MaximumTest(Integer num1, Integer num2, Integer num3, Integer output) {
-        this.num1 = num1;
-        this.num2 = num2;
-        this.num3 = num3;
+    public MaximumTest(List<Integer> inputList, Integer output) {
+        
+    	this.inputList = inputList;
         this.output = output;
     }
 
     @Before
     public void setUp() {
-        testMax = new Maximum();
+        testMax = new Maximum(inputList);
     }
 
     @Parameterized.Parameters
@@ -34,22 +36,25 @@ public class MaximumTest {
         return Arrays.asList(new Object[][] {
 
                 // Given Max Number at 1st Position return the Same Number
-                {9, 7, 3, 9},
-                {99, 77, 33, 99},
-                {999, 777, 333, 999},
-                {9999, 7777, 3333, 9999},
+                {Arrays.asList(9, 7, 3), 9},
+                {Arrays.asList(99, 77, 33), 99},
+                {Arrays.asList(999, 777, 333), 999},
+                {Arrays.asList(9999, 7777, 3333), 9999},
 
                 // Given Max Number at 2nd Position return the Same Number
-                {7, 9, 3, 9},
-                {77, 99, 33, 99},
-                {777, 999, 333, 999},
-                {7777, 9999, 3333, 9999},
+                {Arrays.asList(7, 9, 3), 9},
+                {Arrays.asList(77, 99, 33), 99},
+                {Arrays.asList(77, 999, 333), 999},
+                {Arrays.asList(7777, 9999, 3333), 9999},
 
                 // Given Max Number at 3rd Position return the Same Number
-                {7, 3, 9, 9},
-                {77, 33, 99, 99},
-                {777, 333, 999, 999},
-                {7777, 3333, 9999, 9999},
+                {Arrays.asList(7, 3, 9), 9},
+                {Arrays.asList(77, 33, 99), 99},
+                {Arrays.asList(777, 333, 999), 999},
+                {Arrays.asList(7777, 3333, 9999), 9999},
+                
+             // N Number of Inputs
+                {Arrays.asList(121, 221, 721, 521, 424), 721},
         });
     }
 

@@ -7,6 +7,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,19 +15,17 @@ import static org.junit.Assert.assertEquals;
 
 public class MaximumStringTest {
 
-	private Maximum testMax;
-    private String str1, str2, str3, output;
+	private List<String> inputList;
+    private String output;
 
-    public MaxStringTest(String str1, String str2, String str3, String output) {
-        this.str1 = str1;
-        this.str2 = str2;
-        this.str3 = str3;
+    public MaxStringTest(List<String> inputList, String output) {
+        this.inputList = inputList;
         this.output = output;
     }
 
     @Before
     public void setUp() {
-        testMax = new Maximum(str1, str2, str3);
+        testMax = new Maximum(inputList);
     }
 
     @Parameterized.Parameters
@@ -34,19 +33,22 @@ public class MaximumStringTest {
         return Arrays.asList(new Object[][] {
 
                 // Given Max String at 1st Position return the Same String
-                {"Peach", "Apple", "Banana", "Peach"},
-                {"Terminal", "Electrode", "Blade", "Terminal"},
-                {"Starfish", "Leather", "Bean", "Starfish"},
+                {Arrays.asList("Peach", "Apple", "Banana"), "Peach"},
+                {Arrays.asList("Terminal", "Electrode", "Blade"), "Terminal"},
+                {Arrays.asList("Starfish", "Leather", "Bean", "Starfish"},
 
                 // Given Max String at 2nd Position return the Same String
-                {"Apple", "Peach", "Banana", "Peach"},
-                {"Blade", "Terminal", "Electrode", "Terminal"},
-                {"Bean", "Starfish", "Leather", "Starfish"},
+                {Arrays.asList("Apple", "Peach", "Banana"), "Peach"},
+                {Arrays.asList("Blade", "Terminal", "Electrode"), "Terminal"},
+                {Arrays.asList("Bean", "Starfish", "Leather"), "Starfish"},
 
                 // Given Max String at 3rd Position return the Same String
-                {"Banana", "Apple", "Peach", "Peach"},
-                {"Blade", "Electrode", "Terminal", "Terminal"},
-                {"Bean", "Leather", "Starfish", "Starfish"},
+                {Arrays.asList("Banana", "Apple", "Peach"), "Peach"},
+                {Arrays.asList("Blade", "Electrode", "Terminal"), "Terminal"},
+                {Arrays.asList("Bean", "Leather", "Starfish"), "Starfish"},
+                
+             // N Number of Inputs
+                {Arrays.asList("Apple", "Orange", "Banana", "Papaya", "Pomegranate"), "Pomegranate"},
         });
     }
 
