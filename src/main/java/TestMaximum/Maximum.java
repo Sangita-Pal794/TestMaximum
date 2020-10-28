@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Maximum<T extends Comparable<T>> {
 
-    List<T> inputList;
+    private List<T> inputList;
 
     // Parameterized Constructor
     public Maximum(List<T> inputList) {
@@ -13,13 +13,18 @@ public class Maximum<T extends Comparable<T>> {
 
     // Method to internally call max() and return the value
     public T testMaximum() {
-        return max(inputList);
+    	printMax(max(inputList));
+    	return max(inputList);
     }
 
     // Generic Method to find the Max from the given inputs
     private static <T extends Comparable<T>> T max(List<T> inputList) {
     	Collections.sort(inputList);
         return inputList.get(inputList.size() - 1);
+    }
+    
+    private void printMax(Z maxValue) {
+        System.out.println("Max of " + inputList + " : " + maxValue);
     }
 }
 
